@@ -61,4 +61,26 @@
     trunk.onclick = () => showInfo('這是後車廂，裡面有工具箱！', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Trunk_toolkit.jpg/320px-Trunk_toolkit.jpg');
 
     function toggleZoom(el, text, imgUrl) {
-      if (el.classList.c
+      if (el.classList.contains('zoomed')) {
+        el.classList.remove('zoomed');
+        infoBox.style.display = 'none';
+      } else {
+        document.querySelectorAll('.part').forEach(e => e.classList.remove('zoomed'));
+        el.classList.add('zoomed');
+        showInfo(text, imgUrl);
+      }
+    }
+
+    function showInfo(text, imgUrl) {
+      infoText.textContent = text;
+      infoImage.src = imgUrl;
+      infoBox.style.display = 'block';
+    }
+
+    function closeInfo() {
+      infoBox.style.display = 'none';
+      document.querySelectorAll('.part').forEach(e => e.classList.remove('zoomed'));
+    }
+  </script>
+</body>
+</html>
