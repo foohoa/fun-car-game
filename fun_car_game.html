@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>趣味修車遊戲</title>
+  <style>
+    body { margin: 0; background: #f0f0f0; font-family: sans-serif; }
+    .container { position: relative; max-width: 100%; overflow: hidden; }
+    .car { width: 100%; display: block; }
+    .part {
+      position: absolute;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .zoomed {
+      transform: scale(2) translate(-25%, -25%);
+      z-index: 10;
+    }
+    #infoBox {
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      background: white;
+      padding: 10px;
+      border: 2px solid #333;
+      display: none;
+      z-index: 20;
+    }
+    #infoBox img { width: 200px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="WhatsApp 图像2025-06-02于12.23.31_082e5f88.jpg" class="car" />
+
+    <img src="left_front_wheel.png" class="part" id="frontWheel" style="top:64%; left:17%; width:15%;" />
+    <img src="left_rear_wheel.png" class="part" id="rearWheel" style="top:65%; left:58%; width:16%;" />
+    <img src="hood.png" class="part" id="hood" style="top:38%; left:3%; width:32%;" />
+    <img src="trunk.png" class="part" id="trunk" style="top:40%; left:75%; width:22%;" />
+
+    <div id="infoBox">
+      <p id="infoText"></p>
+      <img id="infoImage" src="" alt="" />
+      <button onclick="closeInfo()">關閉</button>
+    </div>
+  </div>
+
+  <script>
+    const frontWheel = document.getElementById('frontWheel');
+    const rearWheel = document.getElementById('rearWheel');
+    const hood = document.getElementById('hood');
+    const trunk = document.getElementById('trunk');
+    const infoBox = document.getElementById('infoBox');
+    const infoText = document.getElementById('infoText');
+    const infoImage = document.getElementById('infoImage');
+
+    frontWheel.onclick = () => toggleZoom(frontWheel, '這是前輪，可點擊模擬拆螺絲！', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Wheel_bolts.jpg/320px-Wheel_bolts.jpg');
+    rearWheel.onclick = () => toggleZoom(rearWheel, '這是後輪，可點擊模擬拆螺絲！', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Wheel_bolts.jpg/320px-Wheel_bolts.jpg');
+    hood.onclick = () => showInfo('這是引擎艙！', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Car_engine.jpg/320px-Car_engine.jpg');
+    trunk.onclick = () => showInfo('這是後車廂，裡面有工具箱！', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Trunk_toolkit.jpg/320px-Trunk_toolkit.jpg');
+
+    function toggleZoom(el, text, imgUrl) {
+      if (el.classList.c
